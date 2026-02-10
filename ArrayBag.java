@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class ArrayBag<T> implements BagInterface<T>{
     private T[] bag;
+    int numberOfEntries;
     /*gets current number of items in this bag 
     @return the number integer of entries in current bag*/
     public int getCurrentSize(){
