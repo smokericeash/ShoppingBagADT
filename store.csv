@@ -1,0 +1,31 @@
+item_name,price,color,size,rfid_tag_id
+Classic T-Shirt,19.99,Black,XS,1
+Classic T-Shirt,19.99,Black,S,2
+Classic T-Shirt,19.99,Black,M,3
+Classic T-Shirt,19.99,White,L,4
+Classic T-Shirt,19.99,White,XL,5
+Slim Fit Jeans,49.99,Dark Blue,28,6
+Slim Fit Jeans,49.99,Dark Blue,30,7
+Slim Fit Jeans,49.99,Dark Blue,32,8
+Slim Fit Jeans,49.99,Black,34,9
+Slim Fit Jeans,49.99,Black,36,10
+Hooded Sweatshirt,39.99,Gray,S,11
+Hooded Sweatshirt,39.99,Gray,M,12
+Hooded Sweatshirt,39.99,Red,L,13
+Hooded Sweatshirt,39.99,Red,XL,14
+Denim Jacket,79.99,Blue,S,15
+Denim Jacket,79.99,Blue,M,16
+Denim Jacket,79.99,Black,L,17
+Denim Jacket,79.99,Black,XL,18
+Summer Dress,59.99,Green,XS,19
+Summer Dress,59.99,Green,S,20
+Summer Dress,59.99,Yellow,M,21
+Summer Dress,59.99,Yellow,L,22
+Puffer Jacket,119.99,Black,M,23
+Puffer Jacket,119.99,Black,L,24
+Puffer Jacket,119.99,Olive,XL,25
+Puffer Jacket,119.99,Olive,XXL,26
+Button-Up Shirt,34.99,Light Blue,S,27
+Button-Up Shirt,34.99,Light Blue,M,28
+Button-Up Shirt,34.99,White,L,29
+Button-Up Shirt,34.99,White,XL,30

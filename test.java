@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+
 
 public class test {
     public static void main(String[] args){
@@ -12,6 +15,33 @@ public class test {
 
         //initialize the items here indivudally through the item class, each tied to RFID 
 
+        File file = new File("store.csv");
+        Item[] inventory = new Item[30];
+        Scanner fileScanner = null;
+        try{
+            fileScanner = new Scanner(file);
+            fileScanner.nextLine();
+            int count = 0;
+            while(fileScanner.hasNextLine()){
+                String line = fileScanner.nextLine();
+                String[] parts = line.split(",");
+                String name = parts[0];
+                double price = Double.parseDouble(parts[1]);
+                String color = parts[2];
+                String size = parts[3];
+                int rfid = Integer.parseInt(parts[4]);
+                Item item = new Item(rfid, color, size, name, price);
+                inventory[count] = item;
+                count++;
+            }
+        }
+        catch(FileNotFoundException e){
+            System.out.println("File not found");
+        }
+        finally{
+            fileScanner.close();
+        }
+
         //create scanner 
         Scanner keyboard = new Scanner(System.in);
 
@@ -21,7 +51,7 @@ public class test {
             System.out.print("Please enter your choice: ");
             String input = keyboard.nextLine();
             if(input.equalsIgnoreCase("H")){
-                System.out.println("gay");
+                System.out.println(inventory[0]);
             }
             else if(input.equalsIgnoreCase("A")){
                 System.out.println("");
