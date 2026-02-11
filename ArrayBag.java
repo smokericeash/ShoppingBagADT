@@ -3,28 +3,48 @@ import java.util.Arrays;
 public class ArrayBag<T> implements BagInterface<T>{
     private T[] bag;
     int numberOfEntries;
+    private static final int DEFAULT_CAPACITY = 30;
+
+    //default constructor
+    public ArrayBag(){
+        this(DEFAULT_CAPACITY);
+    }
+
+    public ArrayBag(int desiredCapacity){
+
+    }
+
+
     /*gets current number of items in this bag 
     @return the number integer of entries in current bag*/
     public int getCurrentSize(){
-        return 0;
+        return numberOfEntries;
     }
 
     /* checks whether bag is empty or not
      @return true or false if it's empty or not*/
     public boolean isEmpty(){
-        return true;
+        return numberOfEntries==0;
     }
 
     /* checks if you can add an entry to this bag, if not return false, if yes add it and return true
      @param newEntry The object to be added is a newEntry
      @return if adding was successful, false if failure*/
     public boolean add(T newEntry){
-        return true;
+        boolean result = false;
+
     }
 
     /*removes any item from the bag
      @returns the removed entry or if the removal was successful or if empty, return null*/
-    public T remove(){
+    public T remove(){  
+        if(numberOfEntries==0){
+            return null;
+        }
+        else{
+            
+            numberOfEntries--;
+        }
 
     }
 
@@ -38,7 +58,9 @@ public class ArrayBag<T> implements BagInterface<T>{
     /* removes all entries in bag
      */
     public void clear(){
+        while(shoppingCart.isEmpty()){
 
+        }
     }
     
     /* checks how much times an item reoccurs in the bag

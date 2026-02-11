@@ -13,8 +13,12 @@ public class test {
         System.out.println("C: Combine the current bag with another shopping bag");
         System.out.println("D: Show all the items in the shopping bag with a total price and ask if user wants to check out");
 
-        //initialize the items here indivudally through the item class, each tied to RFID 
+        //create shopping cart here using resizeable array
+        
 
+
+
+        //initialize the items here indivudally through the item class, each tied to RFID 
         File file = new File("store.csv");
         Item[] inventory = new Item[30];
         Scanner fileScanner = null;

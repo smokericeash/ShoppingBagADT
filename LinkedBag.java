@@ -4,20 +4,22 @@ public class LinkedBag<T> implements BagInterface<T>{
 
     /*gets current number of items in this bag 
     @return the number integer of entries in current bag*/
+    @Override
     public int getCurrentSize(){
-
+        return numberOfEntries;
     }
 
     /* checks whether bag is empty or not
      @return true or false if it's empty or not*/
     public boolean isEmpty(){
-
+        return numberOfEntries==0;
     }
 
     /* checks if you can add an entry to this bag, if not return false, if yes add it and return true
      @param newEntry The object to be added is a newEntry
      @return if adding was successful, false if failure*/
     public boolean add(T newEntry){
+        boolean result = false;
 
     }
 
@@ -37,7 +39,7 @@ public class LinkedBag<T> implements BagInterface<T>{
     /* removes all entries in bag
      */
     public void clear(){
-
+        while(nu)
     }
     
     /* checks how much times an item reoccurs in the bag
