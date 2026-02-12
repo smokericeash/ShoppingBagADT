@@ -5,6 +5,12 @@ import java.io.FileNotFoundException;
 
 public class test {
     public static void main(String[] args){
+        // ANSI escape code for bold text
+        String ANSI_BOLD = "\u001B[1m";
+        // ANSI escape code to reset formatting
+        String ANSI_RESET = "\u001B[0m";
+
+
         //introduce user to store, list the options
         System.out.println("Welcome to my store! Here are the options: "); 
         System.out.println("H: Print out Help Message");
@@ -17,10 +23,10 @@ public class test {
         File file = new File("store.csv");
         Item[] inventory = new Item[30];
         Scanner fileScanner = null;
+        int inventoryCount = 0;
         try{
             fileScanner = new Scanner(file);
             fileScanner.nextLine();
-            int count = 0;
             while(fileScanner.hasNextLine()){
                 String line = fileScanner.nextLine();
                 String[] parts = line.split(",");
@@ -30,15 +36,17 @@ public class test {
                 String size = parts[3];
                 int rfid = Integer.parseInt(parts[4]);
                 Item item = new Item(rfid, color, size, name, price);
-                inventory[count] = item;
-                count++;
+                inventory[inventoryCount] = item;
+                inventoryCount++;
             }
         }
         catch(FileNotFoundException e){
             System.out.println("File not found");
         }
         finally{
+            if(fileScanner != null){
             fileScanner.close();
+            }
         }
 
         //create shopping cart here using resizeable array
@@ -48,29 +56,91 @@ public class test {
         Scanner keyboard = new Scanner(System.in);
 
         boolean breakout = false;
+        //delcare rfid and quantity variables here
+        int rfid;
+        int quantity;
+        Item foundItem = null;
         //while loop will keep asking user to entre choice until they decide to checkout and leave 
         while(!breakout){
             System.out.print("Please enter your choice: ");
             String input = keyboard.nextLine();
+            String[] parts = input.split("\\s+");
             if(input.equalsIgnoreCase("H")){
-                System.out.println(inventory[0]);
+                System.out.println("H: Print out Help Message");
+                System.out.println("A: Add item(s) with a given RFID # followed by the quantity");
+                System.out.println("R: Remove item(s) with a given RFID # followed by the quantity");
+                System.out.println("C: Combine the current bag with another shopping bag");
+                System.out.println("D: Show all the items in the shopping bag with a total price and ask if user wants to check out");
+
             }
-            else if(input.equalsIgnoreCase("A")){
-                System.out.println("");
+            else if(parts.length==3 && parts[0].equalsIgnoreCase("A")){
+                try{
+                    rfid = Integer.parseInt(parts[1]);
+                    quantity = Integer.parseInt(parts[2]);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Invalid. RFID and quantity must be numbers after your option.");
+                    return;
+                }
+
+                for(int i = 0; i < inventoryCount-1; i++){
+                    if(inventory[i].getRFID()==rfid){
+                        foundItem = inventory[i];
+                        break;
+                    }
+                }
+                
+                if(foundItem==null){
+                    System.out.println("That is not a valid RFID number.");
+                }
+                else{
+                    for(int i = 0; i < quantity; i++){ //looping through the quantity on how much items this user wants to add
+                        shoppingCart.add(foundItem); //adding item if foundItem is not null, which means the method found a valid RFID number
+                        System.out.println("You printed this amount of times.");
+                    }
+                }
+                
+                
             }
-            else if(input.equalsIgnoreCase("R")){
-                System.out.println("");
+            else if(parts.length==3 && parts[0].equalsIgnoreCase("R")){
+                try{
+                    rfid = Integer.parseInt(parts[1]);
+                    quantity = Integer.parseInt(parts[2]);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Invalid. RFID and quantity must be numbers after your option.");
+                    return;
+                }
+
+                for(int i = 0; i < inventoryCount-1; i++){
+                    if(inventory[i].getRFID()==rfid){
+                        foundItem = inventory[i];
+                        break;
+                    }
+                }
+                
+                if(foundItem==null){
+                    System.out.println("That is not a valid RFID number.");
+                }
+                else{
+                    for(int i = 0; i < quantity; i++){ //looping through the quantity the user wants to remove from the bag
+                        shoppingCart.remove(foundItem); //removing item if foundItem is not null, which means the method found a valid RFID number
+                        System.out.println("You printed this amount of times.");
+                    }
+                }
+
             }
             else if(input.equalsIgnoreCase("C")){
                 System.out.println("");
             }
             else if(input.equalsIgnoreCase("D")){
                 System.out.println("Here's your shopping cart: ");
-
+                System.out.println(ANSI_BOLD + "Item Name           Price   Quantity" + ANSI_RESET);
                 System.out.print("Are you ready to check out? ");
                 String choice = keyboard.nextLine();
                 if (choice.equalsIgnoreCase("Y") || choice.equalsIgnoreCase("Yes")){
                     breakout=true;
+
                 }
                 else if(!(choice.equalsIgnoreCase("N") || choice.equalsIgnoreCase("No"))){
                     System.out.println("That is not a valid input, please try again.");

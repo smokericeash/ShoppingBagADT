@@ -1,3 +1,4 @@
+
 //interface that describes the operations of a bag
 public interface BagInterface<T> {
     /*gets current number of items in this bag 
