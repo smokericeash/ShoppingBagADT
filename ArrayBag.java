@@ -185,4 +185,5 @@ public class ArrayBag<T> implements BagInterface<T>{
         checkCapacity(newLength);
         bag = Arrays.copyOf(bag, newLength);
     }
+
 }

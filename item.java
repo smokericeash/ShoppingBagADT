@@ -37,7 +37,7 @@ public class Item {
 
     @Override
     public String toString(){
-        return color + " " + size + " " + name + ", " + price;
+        return color + " " + size + " " + name;
     }
 
     @Override

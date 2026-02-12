@@ -83,12 +83,14 @@ public class test {
                     return;
                 }
 
-                for(int i = 0; i < inventoryCount-1; i++){
+                foundItem = null;
+                for(int i = 0; i < inventoryCount; i++){
                     if(inventory[i].getRFID()==rfid){
                         foundItem = inventory[i];
                         break;
                     }
                 }
+                
                 
                 if(foundItem==null){
                     System.out.println("That is not a valid RFID number.");
@@ -96,8 +98,8 @@ public class test {
                 else{
                     for(int i = 0; i < quantity; i++){ //looping through the quantity on how much items this user wants to add
                         shoppingCart.add(foundItem); //adding item if foundItem is not null, which means the method found a valid RFID number
-                        System.out.println("You printed this amount of times.");
                     }
+                    System.out.println(foundItem.toString()+ " (" + quantity + ")" + " placed in your bag.");
                 }
                 
                 
@@ -112,12 +114,14 @@ public class test {
                     return;
                 }
 
-                for(int i = 0; i < inventoryCount-1; i++){
+                foundItem = null;
+                for(int i = 0; i < inventoryCount; i++){
                     if(inventory[i].getRFID()==rfid){
                         foundItem = inventory[i];
                         break;
                     }
                 }
+                
                 
                 if(foundItem==null){
                     System.out.println("That is not a valid RFID number.");
@@ -125,8 +129,8 @@ public class test {
                 else{
                     for(int i = 0; i < quantity; i++){ //looping through the quantity the user wants to remove from the bag
                         shoppingCart.remove(foundItem); //removing item if foundItem is not null, which means the method found a valid RFID number
-                        System.out.println("You printed this amount of times.");
                     }
+                    System.out.println(foundItem.toString()+ " (" + quantity + ")" + " removed from your bag.");
                 }
 
             }
