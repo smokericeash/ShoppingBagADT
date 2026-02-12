@@ -38,4 +38,18 @@ public class Item {
     public String toString(){
         return color + " " + size + " " + name + ", " + price;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj){
+            return true;
+        }
+
+        if(obj==null || getClass() !=obj.getClass()){
+            return false;
+        }
+
+        Item other = (Item) obj;
+        return this.rfid ==other.rfid;
+    }
 }

@@ -39,7 +39,7 @@ public class LinkedBag<T> implements BagInterface<T>{
     /* removes all entries in bag
      */
     public void clear(){
-        while(nu)
+        
     }
     
     /* checks how much times an item reoccurs in the bag
