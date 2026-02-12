@@ -1,6 +1,6 @@
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 
 public class test {
@@ -99,6 +99,7 @@ public class test {
                     for(int i = 0; i < quantity; i++){ //looping through the quantity on how much items this user wants to add
                         shoppingCart.add(foundItem); //adding item if foundItem is not null, which means the method found a valid RFID number
                     }
+                    
                     System.out.println(foundItem.toString()+ " (" + quantity + ")" + " placed in your bag.");
                 }
                 
@@ -135,7 +136,7 @@ public class test {
 
             }
             else if(input.equalsIgnoreCase("C")){
-                System.out.println("");
+                System.out.print("What's in the other bag?: " + shoppingCart.getCurrentSize());
             }
             else if(input.equalsIgnoreCase("D")){
                 System.out.println("Here's your shopping cart: ");
