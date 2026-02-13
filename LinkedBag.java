@@ -29,6 +29,7 @@ public class LinkedBag<T> implements BagInterface<T>{
         return true;
 
     }
+    
 
     /*removes any item from the bag
      @returns the removed entry or if the removal was successful or if empty, return null*/
@@ -64,14 +65,24 @@ public class LinkedBag<T> implements BagInterface<T>{
     /* removes all entries in bag
      */
     public void clear(){
-        
+        while(!isEmpty()){
+            remove();
+        }
     }
     
     /* checks how much times an item reoccurs in the bag
      @param anEntry, the entry to be counted
      @returns the integer that the item appears*/
     public int getFrequencyOf(T anEntry){
-
+        int result = 0;
+        Node currentNode = firstNode;
+        while(currentNode!=null){
+            if(anEntry.equals(currentNode.getData())){
+                result++;
+            }
+            currentNode = currentNode.next;
+        }
+        return result;
     }
 
     /*  checks whether the item contains an item or not
