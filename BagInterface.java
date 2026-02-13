@@ -40,4 +40,6 @@ public interface BagInterface<T> {
     /* looks at all objects that are within the bag
      @returns a newly allocated array of all entires inside the bag, if array is empty then it will return another empty array*/
     public T[] toArray();
+
 }
+
