@@ -131,7 +131,12 @@ public class test {
                     for(int i = 0; i < quantity; i++){ //looping through the quantity the user wants to remove from the bag
                         shoppingCart.remove(foundItem); //removing item if foundItem is not null, which means the method found a valid RFID number
                     }
-                    System.out.println(foundItem.toString()+ " (" + quantity + ")" + " removed from your bag.");
+                    if(!shoppingCart.remove(foundItem)){
+                        System.out.println("You cannot remove more of this item, because it doesn't exist or you set too high of a quantity to remove.");
+                    }
+                    else{
+                        System.out.println(foundItem.toString()+ " (" + quantity + ")" + " removed from your bag.");
+                    }
                 }
 
             }
