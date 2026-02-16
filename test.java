@@ -79,7 +79,7 @@ public class test {
                     quantity = Integer.parseInt(parts[2]);
                 }
                 catch(NumberFormatException e){
-                    System.out.println("Invalid. RFID and quantity must be numbers after your option.");
+                    System.out.println("Invalid. RFID and quantity must be numbers after your option."); //make sure user inputs the correct format when inputting RFID and quantity
                     return;
                 }
 
@@ -128,7 +128,7 @@ public class test {
                     System.out.println("That is not a valid RFID number.");
                 }
                 else{
-                    for(int i = 0; i < quantity; i++){ //looping through the quantity the user wants to remove from the bag
+                    for(int i = 0; i < quantity-1; i++){ //looping through the quantity the user wants to remove from the bag
                         shoppingCart.remove(foundItem); //removing item if foundItem is not null, which means the method found a valid RFID number
                     }
                     if(!shoppingCart.remove(foundItem)){
@@ -140,14 +140,51 @@ public class test {
                 }
 
             }
+            //option C, combining both bags for the users 
+            else if(input.equalsIgnoreCase("C")){
+                rfid = 0;
+                quantity = 0;
+                System.out.print("What's in the other bag?: "); 
+                String nextInput = keyboard.nextLine();
+                String[] pieces = nextInput.split("\\s+");
+                try{
+                    rfid = Integer.parseInt(pieces[0]);
+                    quantity = Integer.parseInt(pieces[1]);
+                }
+                catch(NumberFormatException e){
+                    System.out.println("That is the incorrect format. Format should be (rfid) (quantity), (rfid) (quantity), etc");
+                }
+
+                foundItem = null;
+
+                for(int i = 0; i < inventoryCount; i++){
+                    if(inventory[i].getRFID()==rfid){
+                        foundItem = inventory[i];
+                        break;
+                    }
+                }
+
+                if(foundItem==null){
+                    System.out.println("That is not a valid RFID number.");
+                }
+                else{
+                    
+                }
+
+
+            }
+
             else if(input.equalsIgnoreCase("D")){
+                //converting the items into an array from shopping cart
                 Object[] cartItems = shoppingCart.toArray();
                 System.out.println("Here's your shopping cart: ");
                 System.out.println(ANSI_BOLD + "Item" + "\t" + "Name" + "\t\t" + "Price" + "\t" + "Quantity" + ANSI_RESET); //bold the section headers
 
+                //reset price to 0
                 double total = 0.0;
                 
-                for(int i = 0; i < cartItems.length; i++){
+                //checking through all of the carts to make sure program hasn't printed the same item twice
+                for(int i = 0; i < cartItems.length; i++){ 
                     Item currentItem = (Item) cartItems[i];
 
                     boolean alreadyPrinted = false;
@@ -160,9 +197,12 @@ public class test {
 
                     int amount = shoppingCart.getFrequencyOf(currentItem);
 
+
+                    //calculating total price with currentItem multiplied by amount
                     total = currentItem.getPrice()*amount;
 
 
+                    //prints the rest of the price, name, and rfid when the loop confirms the program hasn't yet printed out these values yet 
                     if(!alreadyPrinted){
 
                         System.out.println(
