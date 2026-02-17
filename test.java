@@ -60,17 +60,17 @@ public class test {
         int rfid;
         int quantity;
         Item foundItem = null;
+        boolean combined = false;
         //while loop will keep asking user to entre choice until they decide to checkout and leave 
         while(!breakout){
             System.out.print("Please enter your choice: ");
             String input = keyboard.nextLine();
             String[] parts = input.split("\\s+");
             if(input.equalsIgnoreCase("H")){
-                System.out.println("H: Print out Help Message");
-                System.out.println("A: Add item(s) with a given RFID # followed by the quantity");
-                System.out.println("R: Remove item(s) with a given RFID # followed by the quantity");
-                System.out.println("C: Combine the current bag with another shopping bag");
-                System.out.println("D: Show all the items in the shopping bag with a total price and ask if user wants to check out");
+                System.out.println("Option A adds in an item of your choice. The format should be \"A (rfid) (quantity)\"");
+                System.out.println("Option R removes an item of your choice. The format should be \"R (rfid) (quantity)\" ");
+                System.out.println("Option C consolidates two bags, adding in items you want. The format should be \"(rfid) (quantity), (rfid) (quantity), etc\"");
+                System.out.println("Option D displays all your items in your shopping cart and the total price.");
 
             }
             else if(parts.length==3 && parts[0].equalsIgnoreCase("A")){
@@ -146,30 +146,54 @@ public class test {
                 quantity = 0;
                 System.out.print("What's in the other bag?: "); 
                 String nextInput = keyboard.nextLine();
-                String[] pieces = nextInput.split("\\s+");
-                try{
-                    rfid = Integer.parseInt(pieces[0]);
-                    quantity = Integer.parseInt(pieces[1]);
-                }
-                catch(NumberFormatException e){
-                    System.out.println("That is the incorrect format. Format should be (rfid) (quantity), (rfid) (quantity), etc");
-                }
+                String[] group = nextInput.split(",");
+                for(String groups: group){
+                    String[] piece = groups.trim().split("\\s+");
 
-                foundItem = null;
-
-                for(int i = 0; i < inventoryCount; i++){
-                    if(inventory[i].getRFID()==rfid){
-                        foundItem = inventory[i];
-                        break;
+                    if(piece.length!=2){
+                        System.out.println("Incorrect format, use: rfid quantity, rfid quantity");
+                        continue;
                     }
-                }
 
-                if(foundItem==null){
-                    System.out.println("That is not a valid RFID number.");
-                }
-                else{
+                    try{
+                    rfid = Integer.parseInt(piece[0]);
+                    quantity = Integer.parseInt(piece[1]);
+
+                    foundItem = null;
+                    for(int i = 0; i < inventoryCount; i++){
+                        if(inventory[i].getRFID()==rfid){
+                            foundItem = inventory[i];
+                            break;
+                        }
+                    }
+                
+                
+                    if(foundItem==null){
+                        System.out.println("That is not a valid RFID number.");
+                    }
+                    else{
+                        for(int i = 0; i < quantity; i++){ //looping through the quantity on how much items this user wants to add
+                            shoppingCart.add(foundItem); //adding item if foundItem is not null, which means the method found a valid RFID number
+                        }
                     
+
+                        combined = true;
+                    }
+
+                    }
+                    //end try 
+                    catch(NumberFormatException e){
+                        System.out.println("RFID and quantity must be numbers.");
+                    }
+                    //end catch
+
                 }
+            
+            if(combined){
+                System.out.println("Bags combined");
+            }
+
+            
 
 
             }
