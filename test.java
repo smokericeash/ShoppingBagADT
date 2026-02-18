@@ -219,15 +219,14 @@ public class test {
                         }
                     }
 
-                    int amount = shoppingCart.getFrequencyOf(currentItem);
-
-
-                    //calculating total price with currentItem multiplied by amount
-                    total = currentItem.getPrice()*amount;
-
 
                     //prints the rest of the price, name, and rfid when the loop confirms the program hasn't yet printed out these values yet 
                     if(!alreadyPrinted){
+                        
+                        int amount = shoppingCart.getFrequencyOf(currentItem);
+                        
+                        //calculating total price with currentItem multiplied by amount
+                        total += currentItem.getPrice()*amount;
 
                         System.out.println(
                             currentItem.getRFID() + "\t" + 
@@ -239,7 +238,7 @@ public class test {
 
                 }
 
-                System.out.println("Total price: $" + total);
+                System.out.printf("Total price: $%.2f%n", total);
                 
                 System.out.print("Are you ready to check out? ");
                 String choice = keyboard.nextLine();
