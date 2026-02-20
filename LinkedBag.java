@@ -92,7 +92,7 @@ public class LinkedBag<T> implements BagInterface<T>{
         boolean found = false;
         Node currentNode = firstNode;
 
-        while(!found && (currentNode.next!=null)){
+        while(!found && (currentNode!=null)){
             if(anEntry.equals(currentNode.getData())){
                 found = true;
             }

@@ -80,7 +80,7 @@ public class test {
                 }
                 catch(NumberFormatException e){
                     System.out.println("Invalid. RFID and quantity must be numbers after your option."); //make sure user inputs the correct format when inputting RFID and quantity
-                    return;
+                    continue;
                 }
 
                 foundItem = null;
@@ -112,7 +112,7 @@ public class test {
                 }
                 catch(NumberFormatException e){
                     System.out.println("Invalid. RFID and quantity must be numbers after your option.");
-                    return;
+                    continue;
                 }
 
                 foundItem = null;
@@ -142,6 +142,7 @@ public class test {
             }
             //option C, combining both bags for the users 
             else if(input.equalsIgnoreCase("C")){
+                combined = false;
                 rfid = 0;
                 quantity = 0;
                 System.out.print("What's in the other bag?: "); 

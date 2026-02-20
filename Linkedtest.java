@@ -49,7 +49,7 @@ public class Linkedtest {
             }
         }
 
-        //create shopping cart here using resizeable array
+        //create shopping cart here using LinkedBag
         BagInterface<Item> shoppingCart = new LinkedBag<>();
 
         //create scanner 
@@ -80,7 +80,7 @@ public class Linkedtest {
                 }
                 catch(NumberFormatException e){
                     System.out.println("Invalid. RFID and quantity must be numbers after your option."); //make sure user inputs the correct format when inputting RFID and quantity
-                    return;
+                    continue;
                 }
 
                 foundItem = null;
@@ -112,7 +112,7 @@ public class Linkedtest {
                 }
                 catch(NumberFormatException e){
                     System.out.println("Invalid. RFID and quantity must be numbers after your option.");
-                    return;
+                    continue;
                 }
 
                 foundItem = null;
@@ -142,6 +142,7 @@ public class Linkedtest {
             }
             //option C, combining both bags for the users 
             else if(input.equalsIgnoreCase("C")){
+                combined = false;
                 rfid = 0;
                 quantity = 0;
                 System.out.print("What's in the other bag?: "); 
